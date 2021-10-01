@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="/favicon.ico">
+<title>Manzoor +92 333 6156613 Vue Tutorials</title>
+
+<!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<!-- Custom styles for this template -->
+<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container" id="wow2">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card text-white bg-primary ">
+        <div class="card-header">Toggle Vue</div>
+        <div class="card-body">
+          <h1 v-show="message">hi this is me</h1>
+          <button class="btn btn-danger" type="button" @click="message = ! message">Toggle</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active" @click="navbtn_home = true"> <a class="nav-link" href="#" >Home <span class="sr-only">(current)</span></a> </li>
+            <li class="nav-item" @click="navbtn_ftu = true"> <a class="nav-link" href="#" >Features</a> </li>
+            <li class="nav-item" @click="navbtn_pri = true"> <a class="nav-link" href="#" >Pricing</a> </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="home_page" v-show='navbtn_home'>home Page</div>
+      <div class="features_page" v-show='navbtn_ftu'>Features Page</div>
+      <div class="fricing_page" v-show='navbtn_pri'>Pricing Page</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card text-white bg-info ">
+        <div class="card-header">Hide Show</div>
+        <div class="card-body">
+          <h1 v-if="showme">show me</h1>
+          <button class="btn btn-danger" type="button" @click="showme = true">Show Me</button>
+          <button class="btn btn-danger" type="button" @click="showme = false">Hide Me</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card text-white bg-success ">
+        <div class="card-header">Vue Loop in ul</div>
+        <div class="card-body">
+          <div>
+            <ul>
+              <li  v-for="xons in xonss">{{ xons }}</li>
+              <input type="text" class="form-control" v-model="xons" :class="[xons.length < 0 ? 'red' : 'green']">
+              <button type="button" @click="xonss.push(xons)" > Add More </button>
+             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <!--<div class="col-md-6">
+      <div class="card text-white bg-danger ">
+        <div class="card-header">Form</div>
+        <div class="card-body">
+          <form >
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                      </div>
+                      <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+         
+        </div>
+      </div>
+    </div>-->
+    <div class="col-md-12">
+      <div class="card text-white bg-primary ">
+        <div class="card-header">Click on Add Another Address</div>
+        <div class="card-body">
+<div class="row" v-for="(address, index) in quote.addresses" :key="index">
+                    <label for="" class="ml-3 font-weight-bold">Address # {{index}}</label> <label for=""> <i class="fa fa-trash delete_icn_qute2" @click="removeAddress(index)" ></i> </label>
+                    <div class="form-group col-md-12 ">
+                        <label class="col-form-label" for="recipient-name">Address</label>
+                        {{quote.addresses[0].address}}
+                        <input class="form-control form-control-sm" v-model="address.address" type="text">
+                    </div>
+
+                    <div class="form-group col-md-3 ">
+                        <label class="col-form-label" for="recipient-name">Country</label>
+                        <select v-model="address.country" name="country" class="form-control form-control-sm">
+                            <option value="" selected="selected">Select Country</option>
+                            <option value="United States">United States</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="col-form-label" for="recipient-name">City</label>
+                        <input class="form-control form-control-sm" v-model="address.city" type="text">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="col-form-label" for="recipient-name">State</label>
+                        <input class="form-control form-control-sm" v-model="address.state" type="text">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="col-form-label" for="recipient-name">Postal Code</label>
+                        <input class="form-control form-control-sm" v-model="address.postalCode"  type="text">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <label class="input_bottom cursor-pointer ml-3 btn btn-danger" @click="addNewAddress">Add Another Address</label>
+                </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+   
+</div>
+
+<script type="text/javascript" src="./js/vue@2.6.14"></script> 
+<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>--> 
+<script>
+	app = new Vue({
+		el: '#wow2',
+	data:{
+		message:true,
+		showme:false,
+		navbtn_home:false,
+		navbtn_ftu:false,
+		navbtn_pri:false,
+		xons:'',
+		xonss:[
+			  'xons1',
+			  'xons2',
+			  'xons3'
+		  ],
+		
+		      data: {},
+      quote: {
+        business: {
+          name: '',
+          email: '',
+          contactperson: '',
+          contactnumber: '',
+          corporation: '',
+          valid_date: '',
+        },
+        addresses: [],
+        items: [],
+        notes: []
+      }
+    },
+			
+	
+    methods: {
+      addNewAddress() {
+        this.quote.addresses.push({
+          country: '',
+          city: '',
+          state: '',
+          postalCode: '',
+        });
+      },
+      addNewItem() {
+        this.quote.items.push({
+          description: '',
+          quantity: '',
+          price: '',
+          total_price: '',
+          discount: '',
+        });
+      },
+      addNewNote() {
+        this.quote.notes.push({
+          text: '',
+        });
+      }
+	}
+	
+	
+	});
+</script> 
+<!-- /.container --> 
+
+<!-- Bootstrap core JavaScript
+    ================================================== --> 
+<!-- Placed at the end of the document so the pages load faster --> 
+
+<script src="./js/jquery.min.js"></script> 
+<script src="./js/ajax/popper.min.js"></script> 
+<script src="./js/bootstrap.min.js"></script>
+</body>
+</html>
